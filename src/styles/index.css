@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+
+/* =================== Font Import ======================== */
+
+@font-face {
+    font-family: "Inter";
+    src: local("Inter"),
+        url("../assets/font/inter/static/Inter-Regular.ttf") format("ttf");
+}
+
+/* =================== Basic Styles ======================== */
+
+*,
+*::before,
+*::after {
+    -webkit-user-drag: none;
+}
+
+html {
+    /* @apply text-[105%] lg:text-[inherit] xl:text-[100%]; */
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    @apply w-2 bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply w-0 bg-primary-100 rounded-2xl;
+}
+
+::selection {
+    @apply text-secondary-500 bg-warning-300;
+}
+
+body {
+    @apply cursor-default overflow-x-hidden bg-secondary-500 text-white-100 relative text-base;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+bold,
+a {
+    @apply font-heading;
+}
+
+p {
+    @apply font-heading font-normal leading-[1.8em];
+}
+
+input[type="text"],
+input[type="name"],
+input[type="email"],
+input[type="password"],
+textarea {
+    @apply w-full px-4 py-2 rounded-md text-[0.9rem] transition-all duration-300 outline-none text-secondary-200 bg-secondary-500 border-[0.2rem] border-transparent;
+}
+
+input::placeholder {
+    @apply text-secondary-200;
+}
+
+.row {
+    @apply w-row-sm lg:w-row max-w-[90rem] m-auto;
+}
+
+.btn {
+    @apply py-2 px-4 outline-none border-1-2rem border-solid rounded-md cursor-pointer transition-all duration-300 font-semibold text-sm;
+}
+
+.btn-primary {
+    @apply bg-primary-100 border-primary-100 text-white-100 hover:bg-primary-200 hover:border-primary-200;
+}
+
+.btn-primary-transparent {
+    @apply bg-transparent border-primary-100 text-primary-100 hover:bg-primary-100 hover:text-white-100;
+}
+
+.btn-secondary {
+    @apply bg-secondary-100 border-secondary-100 text-white-100 hover:bg-secondary-200 hover:border-secondary-200;
+}
+
+.btn-secondary-transparent {
+    @apply bg-transparent border-secondary-100 text-white-100 hover:bg-secondary-200 hover:border-secondary-200;
+}
+
+.btn-white {
+    @apply bg-white border-white text-secondary-500;
+}
+
+.form-group {
+    @apply w-full flex items-start justify-center flex-col gap-2;
+}
+
+.form-group input[type="submit"] {
+    @apply w-full;
+}
+
+.form-group label {
+    @apply select-none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="name"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    @apply border-[0.2rem]
+        border-primary-100 shadow-form-input-shadow;
+}
+
+.input-checkbox {
+    @apply outline-none absolute top-1/2 left-0 transform -translate-y-1/2 w-4 h-4 appearance-none rounded border-1rem border-transparent bg-secondary-500 bg-[50%] bg-no-repeat bg-cover cursor-pointer;
+}
+
+.input-checkbox:checked {
+    @apply bg-checkbox-checked bg-primary-100 border-primary-100 shadow-form-input-checkbox-shadow;
+}
+
+@tailwind utilities;
