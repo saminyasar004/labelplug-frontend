@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Hero() {
     return (
         <section className="py-28 bg-primary-100">

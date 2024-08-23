@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Plus, FolderPlus, CurrencyDollar, Truck } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 

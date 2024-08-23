@@ -1,19 +1,18 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Layout from "./Common/Layout";
-import Home from "./Home/Home";
-import Pricing from "./Pricing/Pricing";
-import About from "./About/About";
-import Cookie from "./Cookie/Cookie";
-import Privacy from "./Privacy/Privacy";
-import TOS from "./TOS/TOS";
-import Login from "./Login/Login";
-import NotFound from "./Common/NotFound";
-import Register from "./Register/Register";
-import ForgotPassword from "./ForgotPassword/ForgotPassword";
-import Support from "./Support/Support";
-import Dashboard from "./Dashboard/Dashboard";
+import Layout from "./Common/Layout.tsx";
+import Home from "./Home/Home.tsx";
+import Pricing from "./Pricing/Pricing.tsx";
+import About from "./About/About.tsx";
+import Cookie from "./Cookie/Cookie.tsx";
+import Privacy from "./Privacy/Privacy.tsx";
+import TOS from "./TOS/TOS.tsx";
+import Login from "./Login/Login.tsx";
+import NotFound from "./Common/NotFound.tsx";
+import Register from "./Register/Register.tsx";
+import ForgotPassword from "./ForgotPassword/ForgotPassword.tsx";
+import Support from "./Support/Support.tsx";
+import Dashboard from "./Dashboard/Dashboard.tsx";
 
 export default function App() {
     return (

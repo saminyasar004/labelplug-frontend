@@ -1,5 +1,3 @@
-import React from "react";
-
 import { CheckCircleFill } from "react-bootstrap-icons";
 import FeaturedImg from "/img/featured-img-1.svg";
 

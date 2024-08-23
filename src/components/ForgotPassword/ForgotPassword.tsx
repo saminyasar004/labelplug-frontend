@@ -1,23 +1,8 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Logo from "/img/logo.png";
 
-export default function Login() {
-    const navigate = useNavigate();
-    const [userEmail, setUserEmail] = useState("");
-    const [userPassword, setUserPassword] = useState("");
-
-    function loginUser() {
-        // const user = {
-        //     email: userEmail,
-        //     password: userPassword,
-        //     status: "true",
-        // };
-        // localStorage.setItem("user", JSON.stringify(user));
-        // navigate("/dashboard");
-    }
-
+export default function ForgotPassword() {
     return (
         <section className="py-28">
             <div className="row min-h-[70vh] flex items-center justify-center">
@@ -33,20 +18,17 @@ export default function Login() {
                     </div>
                     <div className="w-full flex items-start justify-center flex-col gap-2">
                         <h3 className="text-4xl font-bold text-white-200">
-                            Login
+                            Forgot Password?
                         </h3>
                         <p className="text-secondary-200 text-sm">
-                            Don't have an account?{" "}
-                            <Link
-                                to="/register"
-                                className="text-primary-100 transition-all duration-300 hover:text-primary-200"
-                            >
-                                Register
-                            </Link>
+                            Recover your password. Enter your email address
+                            below and then you will get an password recovery
+                            mail on your inbox. After then follow the
+                            instructions.
                         </p>
                     </div>
                     <form
-                        id="loginForm"
+                        id="forgotPasswordForm"
                         action="#"
                         className="w-full flex items-start justify-center flex-col gap-6"
                         onSubmit={(e) => e.preventDefault()}
@@ -64,43 +46,13 @@ export default function Login() {
                                 name="email"
                                 placeholder="Email address here"
                                 required
-                                onChange={(e) => {
-                                    setUserEmail(e.target.value);
-                                }}
                             />
-                        </div>
-                        <div className="form-group">
-                            <label
-                                className="text-sm font-semibold text-white-300"
-                                htmlFor="passwordBox"
-                            >
-                                Password
-                            </label>
-                            <input
-                                id="passwordBox"
-                                type="password"
-                                name="password"
-                                placeholder="**********"
-                                required
-                                onChange={(e) => {
-                                    setUserPassword(e.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <Link
-                                className="text-primary-100 hover:text-primary-200 text-sm transition-all duration-300"
-                                to="/forgot-password"
-                            >
-                                Forgot your password?
-                            </Link>
                         </div>
                         <div className="form-group">
                             <input
                                 className="btn btn-primary"
                                 type="submit"
-                                value="Login"
-                                onClick={() => loginUser()}
+                                value="Recover Password"
                             />
                         </div>
                     </form>

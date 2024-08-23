@@ -1,5 +1,3 @@
-import React from "react";
-
 import NotFoundImg from "/img/404.svg";
 
 export default function NotFound() {

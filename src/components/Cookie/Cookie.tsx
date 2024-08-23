@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Cookie() {
     return (
         <section className="py-28">

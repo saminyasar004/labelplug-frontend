@@ -1,23 +1,68 @@
-import React, { useEffect } from "react";
+import { ReactElement, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { MoonFill, SunFill, List, X, Power } from "react-bootstrap-icons";
+import { MoonFill, List, X, Power } from "react-bootstrap-icons";
 
 import Logo from "/img/logo.png";
 import Avatar from "/img/avatar.jpg";
 
-export default function Header() {
+export default function Header(): ReactElement<HTMLDivElement> {
     const location = useLocation();
     const currentPath = location.pathname;
 
-    const isLoggedin = true;
+    const isLoggedin: boolean = true;
 
-    const userAdminPanelPaths = [
+    const userAdminPanelPaths: string[] = [
         "/dashboard",
         "/labels",
         "/deposit",
         "/address-book",
     ];
+
+    // useEffect starts
+    const hamburgerContainer = useRef<HTMLSpanElement | null>(null);
+    const hamburgerShow = useRef<HTMLElement | null>(null);
+    const hamburgerClose = useRef<HTMLElement | null>(null);
+    const navigationContainer = useRef<HTMLUListElement | null>(null);
+
+    useEffect(() => {
+        console.log(hamburgerContainer.current);
+        console.log(navigationContainer.current);
+
+        hamburgerContainer?.current?.addEventListener("click", () => {
+            console.log("clicked.");
+            if (navigationContainer?.current?.classList.contains("w-0")) {
+                navigationContainer?.current?.classList.remove("w-0");
+                navigationContainer?.current?.classList.add("w-full");
+                navigationContainer?.current?.parentElement?.classList.remove(
+                    "w-0"
+                );
+                navigationContainer?.current?.parentElement?.classList.add(
+                    "w-full"
+                );
+
+                hamburgerShow?.current?.classList.toggle("hidden");
+                hamburgerClose?.current?.classList.toggle("hidden");
+
+                document.body.style.overflow = "hidden";
+            } else {
+                navigationContainer?.current?.classList.remove("w-full");
+                navigationContainer?.current?.classList.add("w-0");
+                navigationContainer?.current?.parentElement?.classList.add(
+                    "w-0"
+                );
+                navigationContainer?.current?.parentElement?.classList.remove(
+                    "w-full"
+                );
+
+                hamburgerShow?.current?.classList.toggle("hidden");
+                hamburgerClose?.current?.classList.toggle("hidden");
+
+                document.body.style.overflow = "inherit";
+            }
+        });
+    }, []);
+    // useEffect ends
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -49,60 +94,26 @@ export default function Header() {
             document.title = "404 Not Found | LabelPlug";
         }
 
-        const hamburgerContainer =
-            document.getElementById("hamburgerContainer");
-        const hamburgerShow = document.getElementById("hamburgerShow");
-        const hamburgerClose = document.getElementById("hamburgerClose");
-        const navigationContainer = document.getElementById(
-            "navigationContainer"
-        );
+        // const hamburgerContainer: HTMLElement | null =
+        //     document.getElementById("hamburgerContainer");
+        // const hamburgerShow = document.getElementById("hamburgerShow");
+        // const hamburgerClose = document.getElementById("hamburgerClose");
+        // const navigationContainer = document.getElementById(
+        //     "navigationContainer"
+        // );
 
-        if (navigationContainer.classList.contains("w-full")) {
-            navigationContainer.classList.remove("w-full");
-            navigationContainer.classList.add("w-0");
-            navigationContainer.parentElement.classList.add("w-0");
-            navigationContainer.parentElement.classList.remove("w-full");
+        // if (navigationContainer.classList.contains("w-full")) {
+        //     navigationContainer.classList.remove("w-full");
+        //     navigationContainer.classList.add("w-0");
+        //     navigationContainer.parentElement.classList.add("w-0");
+        //     navigationContainer.parentElement.classList.remove("w-full");
 
-            hamburgerShow.classList.toggle("hidden");
-            hamburgerClose.classList.toggle("hidden");
+        //     hamburgerShow.classList.toggle("hidden");
+        //     hamburgerClose.classList.toggle("hidden");
 
-            document.body.style.overflow = "inherit";
-        }
+        //     document.body.style.overflow = "inherit";
+        // }
     }, [currentPath]);
-
-    useEffect(() => {
-        const hamburgerContainer =
-            document.getElementById("hamburgerContainer");
-        const hamburgerShow = document.getElementById("hamburgerShow");
-        const hamburgerClose = document.getElementById("hamburgerClose");
-        const navigationContainer = document.getElementById(
-            "navigationContainer"
-        );
-
-        hamburgerContainer.addEventListener("click", () => {
-            if (navigationContainer.classList.contains("w-0")) {
-                navigationContainer.classList.remove("w-0");
-                navigationContainer.classList.add("w-full");
-                navigationContainer.parentElement.classList.remove("w-0");
-                navigationContainer.parentElement.classList.add("w-full");
-
-                hamburgerShow.classList.toggle("hidden");
-                hamburgerClose.classList.toggle("hidden");
-
-                document.body.style.overflow = "hidden";
-            } else {
-                navigationContainer.classList.remove("w-full");
-                navigationContainer.classList.add("w-0");
-                navigationContainer.parentElement.classList.add("w-0");
-                navigationContainer.parentElement.classList.remove("w-full");
-
-                hamburgerShow.classList.toggle("hidden");
-                hamburgerClose.classList.toggle("hidden");
-
-                document.body.style.overflow = "inherit";
-            }
-        });
-    }, []);
 
     return (
         <header className="py-3 bg-secondary-500 lg:bg-secondary-300 relative z-20">
@@ -117,23 +128,25 @@ export default function Header() {
                     </Link>
                 </div>
                 <span
-                    id="hamburgerContainer"
+                    ref={hamburgerContainer}
                     className="lg:hidden text-primary-100 bg-transparent border-1-2rem border-primary-100 transition-all duration-300 p-[0.3rem] cursor-pointer rounded-md"
                 >
-                    <List
-                        id="hamburgerShow"
-                        size={24}
+                    <span
+                        ref={hamburgerShow}
                         className="font-bold pointer-events-none"
-                    />
-                    <X
-                        id="hamburgerClose"
-                        size={24}
+                    >
+                        <List size={24} />
+                    </span>
+                    <span
+                        ref={hamburgerClose}
                         className="font-bold pointer-events-none hidden"
-                    />
+                    >
+                        <X size={24} />
+                    </span>
                 </span>
                 <div className="w-0 lg:w-full bg-secondary-500 lg:bg-transparent absolute top-0 left-0 -z-10 lg:z-auto lg:static transition-all duration-300">
                     <ul
-                        id="navigationContainer"
+                        ref={navigationContainer}
                         className="w-0 lg:w-full h-screen lg:h-auto flex items-center justify-center lg:justify-between flex-col lg:flex-row gap-8 lg:gap-4 overflow-hidden transition-all duration-300"
                     >
                         <div className="flex items-center justify-start flex-col lg:flex-row gap-4 text-sm font-medium">
